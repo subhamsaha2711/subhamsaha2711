@@ -1,21 +1,75 @@
 import { useState, useEffect } from 'react';
 import { phrases, personals } from '@/data/personals';
-import { ArrowDown, ArrowRight, MapPinIcon } from './icons';
+import { ArrowDown, ArrowRight } from './icons';
 
-export default function Hero() {
-  const [phraseIndex, setPhraseIndex] = useState(0);
-  const [visible,     setVisible]     = useState(true);
+interface CountUpProps {
+  end: number;
+  duration?: number; // milliseconds
+}
+
+function CountUp({
+  end,
+  duration = 2000,
+}: CountUpProps) {
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setVisible(false);
-      setTimeout(() => {
-        setPhraseIndex(i => (i + 1) % phrases.length);
-        setVisible(true);
-      }, 220);
-    }, 3200);
-    return () => clearInterval(interval);
-  }, []);
+    let startTime: number;
+
+    const animate = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+
+      setCount(Math.floor(progress * end));
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [end, duration]);
+
+  return <>{count}</>;
+}
+
+export default function Hero() {
+
+  const [phraseIndex, setPhraseIndex] = useState(0);
+  const [displayPhrase, setDisplayPhrase] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+
+
+  useEffect(() => {
+    const currentPhrase = phrases[phraseIndex];
+
+    let timeout: ReturnType<typeof setTimeout>;
+
+    if (!isDeleting) {
+      if (displayPhrase.length < currentPhrase.length) {
+        timeout = setTimeout(() => {
+          setDisplayPhrase(currentPhrase.slice(0, displayPhrase.length + 1));
+        }, 45); // typing speed
+      } else {
+        timeout = setTimeout(() => {
+          setIsDeleting(true);
+        }, 1500); // pause after typing
+      }
+    } else {
+      if (displayPhrase.length > 0) {
+        timeout = setTimeout(() => {
+          setDisplayPhrase(currentPhrase.slice(0, displayPhrase.length - 1));
+        }, 25); // deleting speed
+      } else {
+        setIsDeleting(false);
+        setPhraseIndex((i) => (i + 1) % phrases.length);
+      }
+    }
+
+    return () => clearTimeout(timeout);
+  }, [displayPhrase, isDeleting, phraseIndex]);
+
 
   return (
     <section
@@ -87,13 +141,10 @@ export default function Hero() {
             style={{
               fontFamily: 'var(--font-mono)',
               color: 'var(--color-secondary)',
-              opacity: visible ? 1 : 0,
-              transform: visible ? 'translateY(0)' : 'translateY(-5px)',
-              transition: 'opacity 0.22s ease, transform 0.22s ease',
               display: 'inline-block',
             }}
           >
-            {phrases[phraseIndex]}
+            {displayPhrase}
           </span>
           <span className="cursor-blink" aria-hidden="true" />
         </div>
@@ -128,9 +179,16 @@ export default function Hero() {
                   letterSpacing: '-0.02em',
                 }}
               >
-                {value}
-                <span style={{ color: 'var(--color-accent)', fontSize: '0.7em' }}>{suffix}</span>
-              </p>
+                <CountUp end={value} />
+                <span
+                  style={{
+                    color: 'var(--color-accent)',
+                    fontSize: '0.7em',
+                  }}
+                >
+                  {suffix}
+                </span>
+              </p>              
               <p className="text-xs" style={{ color: 'var(--color-dim)', fontFamily: 'var(--font-mono)' }}>
                 {label}
               </p>
@@ -141,9 +199,11 @@ export default function Hero() {
         {/* Scroll cue */}
         <div
           className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1"
-          style={{ color: 'var(--color-faint)' }}
+          style={{ color: 'var(--color-accent)',
+            animation: 'move 2s linear infinite',
+          }}
         >
-          <ArrowDown size={16} />
+          <ArrowDown size={16}/>
         </div>
       </div>
     </section>
