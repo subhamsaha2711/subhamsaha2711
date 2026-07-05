@@ -167,7 +167,7 @@ body {
   border-radius: 9999px;
   background: var(--color-accent);
   width: 0%;
-  transition: width 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: width 2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* ── Phrase cursor ── */
@@ -240,6 +240,20 @@ body {
 .nav-transparent {
   background: transparent;
   border-bottom: 1px solid transparent;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(var(--reveal-y, 35px));
+  transition:
+    opacity .7s ease,
+    transform .7s cubic-bezier(.22,.61,.36,1);
+  will-change: opacity, transform;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 @keyframes move {

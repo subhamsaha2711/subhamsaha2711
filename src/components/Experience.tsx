@@ -1,8 +1,10 @@
 import { experiences } from '@/data/experience';
+import Reveal from '@/hooks/Reveal';
 
 export default function Experience() {
 
   return (
+    <Reveal>
     <section
       id="experience"
       className="py-24"
@@ -19,7 +21,8 @@ export default function Experience() {
         </h2>
 
         <div className="flex flex-col gap-4">
-          {experiences.map((exp) => (
+          {experiences.map((exp, i) => (
+            <Reveal key={exp.id} delay={i * 250}>
             <article
               key={exp.id}
               className="card p-6 md:p-8 grid md:grid-cols-[200px_1fr] gap-6"
@@ -82,9 +85,11 @@ export default function Experience() {
                 </div>
               </div>
             </article>
+            </Reveal>
           ))}
         </div>
       </div>
     </section>
+    </Reveal>
   );
 }

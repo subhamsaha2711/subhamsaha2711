@@ -1,5 +1,6 @@
 import { about, socials } from '@/data/personals';
 import { GitHubIcon, CodeforcesIcon, LeetCodeIcon, MediumIcon } from './icons';
+import Reveal from '@/hooks/Reveal';
 
 const iconMap: Record<string, React.ReactNode> = {
   CodeForces: <CodeforcesIcon size={15} />,
@@ -10,6 +11,7 @@ const iconMap: Record<string, React.ReactNode> = {
 
 export default function About() {
   return (
+    <Reveal>
     <section
       id="about"
       className="py-24"
@@ -48,7 +50,8 @@ export default function About() {
               Find me on
             </p>
             <div className="flex flex-col gap-2.5">
-              {socials.filter(({ name }) => ["CodeForces", "GitHub", "LeetCode", "Medium"].includes(name)).map(({ name, handle, href }) => (
+              {socials.filter(({ name }) => ["CodeForces", "GitHub", "LeetCode", "Medium"].includes(name)).map(({ name, handle, href }, i) => (
+                <Reveal key={name} delay={i * 250}>
                 <a
                   key={name}
                   href={href}
@@ -71,6 +74,7 @@ export default function About() {
                     </span>
                   </span>
                 </a>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -78,5 +82,6 @@ export default function About() {
         </div>
       </div>
     </section>
+    </Reveal>
   );
 }

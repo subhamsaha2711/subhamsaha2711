@@ -1,8 +1,10 @@
 import { publications } from '@/data/publications';
 import { ExternalIcon } from './icons';
+import Reveal from '@/hooks/Reveal';
 
 export default function Publications() {
   return (
+    <Reveal>
     <section
       id="publications"
       className="py-24"
@@ -19,7 +21,8 @@ export default function Publications() {
         </h2>
 
         <div className="grid sm:grid-cols-2 gap-4">
-          {publications.map((pub) => (
+          {publications.map((pub, i) => (
+            <Reveal key={pub.title} delay={i * 250}>
             <article
               key={pub.title}
               className="card p-6 flex flex-col"
@@ -81,10 +84,12 @@ export default function Publications() {
                 </a>
               </div>
             </article>
+            </Reveal>
           ))}
         </div>
 
       </div>
     </section>
+    </Reveal>
   );
 }

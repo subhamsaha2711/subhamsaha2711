@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import { skills } from '@/data/skills';
+import Reveal from '@/hooks/Reveal';
 
 function useInView(threshold = 0.15) {
   const ref  = useRef<HTMLDivElement>(null);
@@ -9,8 +10,13 @@ function useInView(threshold = 0.15) {
     const el = ref.current;
     if (!el) return;
     const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setInView(true); },
-      { threshold }
+      ([entry], observer) => {
+      if (entry.isIntersecting) {
+        setInView(true);
+        observer.unobserve(entry.target);
+      }
+    },
+    { threshold }
     );
     obs.observe(el);
     return () => obs.disconnect();
@@ -23,6 +29,7 @@ export default function Skills() {
   const [containerRef, inView] = useInView(0.1);
 
   return (
+    <Reveal>
     <section
       id="skills"
       className="py-24"
@@ -42,7 +49,8 @@ export default function Skills() {
           ref={containerRef}
           className="grid sm:grid-cols-2 gap-x-12 gap-y-7"
         >
-          {skills.map(({ name, percentage }) => (
+          {skills.map(({ name, percentage }, i) => (
+            <Reveal key={name} delay={i * 250}>
             <div key={name}>
               {/* Label row */}
               <div className="flex items-center justify-between mb-2">
@@ -64,7 +72,7 @@ export default function Skills() {
               <div className="skill-track">
                 <div
                   className="skill-fill"
-                  style={{ width: inView ? `${percentage}%` : '0%' }}
+                  style={{ width: inView ? `${percentage}%` : '0%', transitionDelay: `${i * 250}ms` }}
                   role="progressbar"
                   aria-valuenow={percentage}
                   aria-valuemin={0}
@@ -73,10 +81,12 @@ export default function Skills() {
                 />
               </div>
             </div>
+            </Reveal>
           ))}
         </div>
 
       </div>
     </section>
+    </Reveal>
   );
 }

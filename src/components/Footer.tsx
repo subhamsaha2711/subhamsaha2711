@@ -1,5 +1,6 @@
 import { socials } from '@/data/personals';
 import { XIcon, LinkedInIcon, TelegramIcon, WhatsAppIcon, MailIcon } from './icons';
+import Reveal from '@/hooks/Reveal';
 
 const iconMap: Record<string, React.ReactNode> = {
   'X / Twitter': <XIcon size={15} />,
@@ -13,6 +14,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
+    <Reveal>
     <footer
       id="contact"
       style={{ borderTop: '1px solid var(--color-stroke)' }}
@@ -42,7 +44,8 @@ export default function Footer() {
             Open to freelance projects, full-time roles, and interesting collaborations.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3">
-            {socials.filter(({ name }) => ["X / Twitter", "LinkedIn", "Telegram", "WhatsApp", "Mail"].includes(name)).map(({ name, href }) => (
+            {socials.filter(({ name }) => ["X / Twitter", "LinkedIn", "Telegram", "WhatsApp", "Mail"].includes(name)).map(({ name, href }, i) => (
+              <Reveal key={name} delay={i * 250}>
               <a
                 key={name}
                 href={href}
@@ -54,6 +57,7 @@ export default function Footer() {
                 <span style={{ color: 'var(--color-accent)' }}>{iconMap[name]}</span>
                 {name}
               </a>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -80,5 +84,6 @@ export default function Footer() {
         </p>
       </div>
     </footer>
+    </Reveal>
   );
 }

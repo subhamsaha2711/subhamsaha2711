@@ -1,8 +1,10 @@
 import { testimonals } from '@/data/testimonals';
 import { QuoteIcon } from './icons';
+import Reveal from '@/hooks/Reveal';
 
 export default function Testimonials() {
   return (
+    <Reveal>
     <section
       id="testimonials"
       className="py-24"
@@ -19,7 +21,8 @@ export default function Testimonials() {
         </h2>
 
         <div className="grid sm:grid-cols-3 gap-4">
-          {testimonals.map((t) => (
+          {testimonals.map((t, i) => (
+            <Reveal key={t.name} delay={i * 250}>
             <article
               key={t.name}
               className="card p-6 flex flex-col"
@@ -53,10 +56,12 @@ export default function Testimonials() {
                 </p>
               </div>
             </article>
+            </Reveal>
           ))}
         </div>
 
       </div>
     </section>
+    </Reveal>
   );
 }

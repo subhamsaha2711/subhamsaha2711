@@ -1,8 +1,10 @@
 import { projects } from '@/data/projects';
 import { GitHubIcon, ExternalIcon } from './icons';
+import Reveal from '@/hooks/Reveal';
 
 export default function Projects() {
   return (
+    <Reveal>
     <section
       id="projects"
       className="py-24"
@@ -19,7 +21,8 @@ export default function Projects() {
         </h2>
 
         <div className="grid md:grid-cols-2 gap-4">
-          {projects.map((project) => (
+          {projects.map((project, i) => (
+            <Reveal key={project.title} delay={i * 250}>
             <article
               key={project.title}
               className="card p-7 flex flex-col"
@@ -69,10 +72,12 @@ export default function Projects() {
                 </a>
               </div>
             </article>
+            </Reveal>
           ))}
         </div>
 
       </div>
     </section>
+    </Reveal>
   );
 }
