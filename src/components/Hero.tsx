@@ -73,25 +73,9 @@ export default function Hero() {
 
   return (
     <section
-      className="relative min-h-screen flex flex-col justify-center hero-dots overflow-hidden"
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden"
       style={{ paddingTop: '4rem', alignItems: 'center' }}
     >
-      {/* Radial fade edges */}
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            'radial-gradient(ellipse 80% 60% at 50% 0%, transparent 40%, var(--color-canvas) 100%)',
-        }}
-      />
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            'radial-gradient(ellipse 100% 40% at 50% 100%, var(--color-canvas) 0%, transparent 60%)',
-        }}
-      />
-
       <div className="relative max-w-5xl mx-auto px-6 w-full py-24">
 
         {/* Location chip */}
