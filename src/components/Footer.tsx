@@ -14,12 +14,12 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <Reveal>
     <footer
       id="contact"
       style={{ borderTop: '1px solid var(--color-stroke)' }}
     >
       {/* Contact CTA strip */}
+      <Reveal>
       <div
         className="py-20"
         style={{ borderBottom: '1px solid var(--color-stroke)' }}
@@ -62,7 +62,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-
+      </Reveal>
       {/* Bottom bar */}
       <div className="py-5 max-w-5xl mx-auto px-6 flex flex-wrap items-center justify-between gap-3">
         {/* Logo + name */}
@@ -84,6 +84,5 @@ export default function Footer() {
         </p>
       </div>
     </footer>
-    </Reveal>
   );
 }

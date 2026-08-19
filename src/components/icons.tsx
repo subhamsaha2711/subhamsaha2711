@@ -119,3 +119,15 @@ export const MailIcon = ({ size = 18, className }: P) => (
     <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 2v.51l-8 6.22-8-6.22V6h16zm-16 12V9.03l7.39 5.74a1 1 0 001.22 0L20 9.03V18H4z"/>
   </svg>
 );
+
+export const HashnodeIcon = ({ size = 18, className }: P) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+  >
+    <path d="M22.351 8.019l-6.37-6.37a5.63 5.63 0 0 0-7.962 0l-6.37 6.37a5.63 5.63 0 0 0 0 7.962l6.37 6.37a5.63 5.63 0 0 0 7.962 0l6.37-6.37a5.63 5.63 0 0 0 0-7.962zM12 15.953a3.953 3.953 0 1 1 0-7.906 3.953 3.953 0 0 1 0 7.906z" />
+  </svg>
+);

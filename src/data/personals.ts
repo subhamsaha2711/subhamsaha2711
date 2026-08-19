@@ -44,9 +44,9 @@ export const socials: Social[] = [
     href: 'https://codeforces.com/profile/subham59036',
   },
   {
-    name: 'Medium',
+    name: 'HashNode',
     handle: '@subham59036',
-    href: 'https://medium.com/@subham59036',
+    href: 'https://subham59036.hashnode.dev',
   },
   {
     name: 'Mail',
@@ -57,7 +57,7 @@ export const socials: Social[] = [
 
 export const about = {
   p1: "I'm a Full Stack Developer based in Kolkata, India — passionate about building resilient, scalable systems that bridge the gap between raw data and meaningful user experiences. I thrive at the intersection of rigorous engineering and creative problem-solving.",
-  p2: "From designing elegant user inference to shipping consistent data driven backends, I bring end-to-end ownership to every project I touch. When I'm not coding, I'm writing technical articles on Medium or contributing to open-source.",
+  p2: "From designing elegant user inference to shipping consistent data driven backends, I bring end-to-end ownership to every project I touch. When I'm not coding, I'm writing technical articles on HashNode or contributing to open-source.",
 };
 
 export const phrases = [
