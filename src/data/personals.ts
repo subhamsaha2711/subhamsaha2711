@@ -10,18 +10,18 @@ export const personals: Personal[] = [
 export const socials: Social[] = [
   {
     name: 'X / Twitter',
-    handle: '@subham59036',
-    href: 'https://x.com/subham59036',
+    handle: '@subhamsaha2711',
+    href: 'https://x.com/subhamsaha2711',
   },
   {
     name: 'LinkedIn',
-    handle: 'in/subham59036',
-    href: 'https://linkedin.com/in/subham59036',
+    handle: 'in/subhamsaha2711',
+    href: 'https://linkedin.com/in/subhamsaha2711',
   },
   {
     name: 'Telegram',
-    handle: '@subham59036',
-    href: 'https://t.me/subham59036',
+    handle: '@subhamsaha2711',
+    href: 'https://t.me/subhamsaha2711',
   },
   {
     name: 'WhatsApp',
@@ -30,28 +30,28 @@ export const socials: Social[] = [
   },
   {
     name: 'GitHub',
-    handle: 'subham59036',
-    href: 'https://github.com/subham59036',
+    handle: 'subhamsaha2711',
+    href: 'https://github.com/subhamsaha2711',
   },
   {
     name: 'LeetCode',
-    handle: 'subham59036',
-    href: 'https://leetcode.com/subham59036',
+    handle: 'subhamsaha2711',
+    href: 'https://leetcode.com/subhamsaha2711',
   },
   {
     name: 'CodeForces',
-    handle: 'subham59036',
-    href: 'https://codeforces.com/profile/subham59036',
+    handle: 'subhamsaha2711',
+    href: 'https://codeforces.com/profile/subhamsaha2711',
   },
   {
     name: 'HashNode',
-    handle: '@subham59036',
-    href: 'https://subham59036.hashnode.dev',
+    handle: '@subhamsaha2711',
+    href: 'https://subhamsaha2711.hashnode.dev',
   },
   {
     name: 'Mail',
-    handle: 'subhamsaha59036',
-    href: 'mailto:subhamsaha59036@outlook.com',
+    handle: 'subhamsaha2711',
+    href: 'mailto:subhamsaha2711@gmail.com',
   },
 ];
 
